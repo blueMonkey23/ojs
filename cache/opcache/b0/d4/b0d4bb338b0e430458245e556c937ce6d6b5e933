@@ -1,4 +1,4 @@
-1799178800a:3:{s:6:"domain";N;s:12:"plural-forms";s:21:"nplurals=1; plural=0;";s:8:"messages";a:1:{s:0:"";a:67:{s:35:"emails.passwordResetConfirm.subject";s:37:"Xác nhận đặt lại mật khẩu";s:32:"emails.passwordResetConfirm.body";s:442:"Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu của bạn cho {$siteTitle}.<br />
+1799812618a:3:{s:6:"domain";N;s:12:"plural-forms";s:21:"nplurals=1; plural=0;";s:8:"messages";a:1:{s:0:"";a:67:{s:35:"emails.passwordResetConfirm.subject";s:37:"Xác nhận đặt lại mật khẩu";s:32:"emails.passwordResetConfirm.body";s:442:"Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu của bạn cho {$siteTitle}.<br />
 <br />
 Nếu bạn không thực hiện yêu cầu này, vui lòng bỏ qua email này và mật khẩu của bạn sẽ không bị thay đổi. Nếu bạn muốn đặt lại mật khẩu của mình, nhấp vào URL bên dưới.<br />
 <br />

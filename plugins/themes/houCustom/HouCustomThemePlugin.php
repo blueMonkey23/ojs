@@ -286,6 +286,6 @@ class HouCustomThemePlugin extends \PKP\plugins\ThemePlugin
     }
 }
 
-if (!PKP_STRICT_MODE) {
+if (!PKP_STRICT_MODE && !class_exists('\DefaultThemePlugin')) {
     class_alias('\APP\plugins\themes\default\DefaultThemePlugin', '\DefaultThemePlugin');
 }
