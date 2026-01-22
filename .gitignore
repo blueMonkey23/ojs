@@ -2,6 +2,7 @@
 ./build
 temp
 /files
+/cache
 /plugins/paymethod/paypal/vendor/
 .htaccess
 .project
