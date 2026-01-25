@@ -1,0 +1,420 @@
+/**
+ * Submissions Page Enhanced Styles
+ * Modern UI for submission guidelines and requirements
+ */
+
+.page_submissions.submissions-enhanced {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  
+  // Submissions header with icon
+  .submissions-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid #f0f0f0;
+    
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0;
+      
+      svg {
+        stroke-width: 2;
+        color: #0066cc;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 2rem;
+        
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+  
+  // Notification section
+  .submission-notification {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    
+    .notification-icon {
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+      stroke-width: 2.5;
+      
+      &.success-icon {
+        stroke: #4ade80;
+      }
+    }
+    
+    a.action-link {
+      color: #fef3c7;
+      text-decoration: underline;
+      font-weight: 600;
+      transition: color 0.3s;
+      
+      &:hover {
+        color: white;
+        text-decoration: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      padding: 1.25rem 1.5rem;
+      font-size: 0.95rem;
+    }
+  }
+  
+  // Content sections
+  .content-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s;
+    
+    &:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    // Empty state styling
+    &.empty-state {
+      background: #fef9f3;
+      border-left: 4px solid #f59e0b;
+      
+      .empty-message {
+        padding: 1.5rem;
+        background: white;
+        border-radius: 8px;
+        border: 2px dashed #fed7aa;
+        
+        p {
+          margin: 0;
+          color: #92400e;
+          text-align: center;
+          
+          em {
+            font-style: normal;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    
+    .section-heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #e5e7eb;
+      
+      svg {
+        stroke-width: 2;
+        color: #0066cc;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+        
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+    
+    .content-body {
+      color: #4b5563;
+      line-height: 1.8;
+      font-size: 1rem;
+      
+      p {
+        margin-bottom: 1rem;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      ul, ol {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+        
+        li {
+          margin-bottom: 0.75rem;
+          padding-left: 0.5rem;
+        }
+      }
+      
+      ul li {
+        list-style-type: disc;
+      }
+      
+      ol li {
+        list-style-type: decimal;
+      }
+      
+      a {
+        color: #0066cc;
+        text-decoration: underline;
+        
+        &:hover {
+          color: #0052a3;
+          text-decoration: none;
+        }
+      }
+      
+      strong, b {
+        color: #1f2937;
+        font-weight: 600;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      padding: 1.75rem;
+    }
+  }
+  
+  // Submission checklist specific styles
+  .submission_checklist {
+    background: #f9fafb;
+    
+    .checklist-body {
+      color: #374151;
+      
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        li {
+          position: relative;
+          padding-left: 2.5rem;
+          margin-bottom: 1.25rem;
+          line-height: 1.6;
+          
+          &:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+          }
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+  
+  // Section policies grid
+  .section-policies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    
+    .section_policy {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+      
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: #0066cc;
+      }
+      
+      h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #e5e7eb;
+      }
+      
+      p {
+        color: #6b7280;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      a {
+        color: #0066cc;
+        font-weight: 600;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      
+      .btn-sm {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+        color: white;
+        border: none;
+        transition: all 0.3s;
+        text-decoration: none;
+        
+        svg {
+          stroke: currentColor;
+        }
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+          text-decoration: none;
+        }
+      }
+    }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  // Copyright notice highlight
+  .copyright_notice {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    
+    .section-heading {
+      color: #92400e;
+      border-bottom-color: #fcd34d;
+      
+      svg {
+        color: #f59e0b;
+      }
+    }
+    
+    .content-body {
+      color: #78350f;
+      
+      strong {
+        color: #92400e;
+      }
+    }
+  }
+  
+  // Privacy statement highlight
+  .privacy_statement {
+    background: #dbeafe;
+    border-left: 4px solid #3b82f6;
+    
+    .section-heading {
+      color: #1e3a8a;
+      border-bottom-color: #93c5fd;
+      
+      svg {
+        color: #3b82f6;
+      }
+    }
+    
+    .content-body {
+      color: #1e40af;
+      
+      strong {
+        color: #1e3a8a;
+      }
+    }
+  }
+  
+  // Edit links styling
+  .editLink {
+    margin-left: auto;
+    font-size: 0.875rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .page_submissions.submissions-enhanced {
+    padding: 1.5rem 1rem;
+    
+    .submissions-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+    }
+    
+    .submission-notification {
+      margin-bottom: 2rem;
+    }
+    
+    .content-section {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .page_submissions.submissions-enhanced {
+    .submission-notification {
+      background: white;
+      color: black;
+      border: 1px solid #ccc;
+    }
+    
+    .content-section {
+      box-shadow: none;
+      border: 1px solid #ccc;
+      page-break-inside: avoid;
+    }
+    
+    .editLink {
+      display: none;
+    }
+  }
+}

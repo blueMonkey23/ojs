@@ -28,28 +28,46 @@
 <div class="page page_search">
 
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="common.search"}
-	<h1>
-		{translate key="common.search"}
-	</h1>
+	
+	<div class="search-header">
+		<div class="container">
+			<h1 class="page-title">
+				<svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+					<circle cx="11" cy="11" r="8"></circle>
+					<path d="m21 21-4.35-4.35"></path>
+				</svg>
+				{translate key="common.search"}
+			</h1>
+		</div>
+	</div>
 
-	{capture name="searchFormUrl"}{url escape=false}{/capture}
-	{assign var=formUrlParameters value=[]}{* Prevent Smarty warning *}
-	{$smarty.capture.searchFormUrl|parse_url:$smarty.const.PHP_URL_QUERY|default:""|parse_str:$formUrlParameters}
-	<form class="cmp_form" method="get" action="{$smarty.capture.searchFormUrl|strtok:"?"|escape}" role="form">
+	<div class="container">
+		{capture name="searchFormUrl"}{url escape=false}{/capture}
+		{assign var=formUrlParameters value=[]}{* Prevent Smarty warning *}
+		{$smarty.capture.searchFormUrl|parse_url:$smarty.const.PHP_URL_QUERY|default:""|parse_str:$formUrlParameters}
+		<form class="cmp_form search-form-enhanced" method="get" action="{$smarty.capture.searchFormUrl|strtok:"?"|escape}" role="form">
 		{foreach from=$formUrlParameters key=paramKey item=paramValue}
 			<input type="hidden" name="{$paramKey|escape}" value="{$paramValue|escape}"/>
 		{/foreach}
 
-		{* Repeat the label text just so that screen readers have a clear
-		   label/input relationship *}
-		<div class="search_input">
-			<label class="pkp_screen_reader" for="query">
-				{translate key="search.searchFor"}
-			</label>
-			{block name=searchQuery}
-				<input type="text" id="query" name="query" value="{$query|escape}" class="query" placeholder="{translate|escape key="common.search"}">
-			{/block}
-		</div>
+			{* Repeat the label text just so that screen readers have a clear
+			   label/input relationship *}
+			<div class="search_input search-input-wrapper">
+				<label class="pkp_screen_reader" for="query">
+					{translate key="search.searchFor"}
+				</label>
+				{block name=searchQuery}
+					<div class="search-input-group">
+						<svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+							<circle cx="11" cy="11" r="8"></circle>
+							<path d="m21 21-4.35-4.35"></path>
+						</svg>
+						<input type="text" id="query" name="query" value="{$query|escape}" 
+							class="query search-input-enhanced" 
+							placeholder="{translate|escape key="search.searchFor"}">
+					</div>
+				{/block}
+			</div>
 
 		<fieldset class="search_advanced">
 			<legend>
@@ -90,10 +108,17 @@
 			{call_hook name="Templates::Search::SearchResults::AdditionalFilters"}
 		</fieldset>
 
-		<div class="submit">
-			<button class="submit" type="submit">{translate key="common.search"}</button>
-		</div>
-	</form>
+			<div class="submit search-submit-wrapper">
+				<button class="btn btn-primary submit-search" type="submit">
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+						<circle cx="11" cy="11" r="8"></circle>
+						<path d="m21 21-4.35-4.35"></path>
+					</svg>
+					{translate key="common.search"}
+				</button>
+			</div>
+		</form>
+	</div>
 
 	{call_hook name="Templates::Search::SearchResults::PreResults"}
 

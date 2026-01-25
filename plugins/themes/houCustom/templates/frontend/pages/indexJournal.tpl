@@ -22,73 +22,94 @@
 
 <div class="page_index_journal">
 
-	{* Custom HOU Welcome Banner *}
-	<div class="hou-welcome-banner">
-		<div class="hou-banner-content">
-			<h1 class="hou-banner-title">Chào mừng đến với Tạp chí Khoa học</h1>
-			<p class="hou-banner-subtitle">Đại học Mở Hà Nội - Nơi khởi đầu ước mơ</p>
-			<div class="hou-banner-stats">
-				<div class="stat-item">
-					<span class="stat-number">500+</span>
-					<span class="stat-label">Bài báo</span>
-				</div>
-				<div class="stat-item">
-					<span class="stat-number">1000+</span>
-					<span class="stat-label">Tác giả</span>
-				</div>
-				<div class="stat-item">
-					<span class="stat-number">50+</span>
-					<span class="stat-label">Số phát hành</span>
+	{* Hero Section *}
+	{if $activeTheme && !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}
+		<section class="hero-section">
+			<div class="hero-image-wrapper">
+				<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" 
+					{if $homepageImage.altText} alt="{$homepageImage.altText|escape}"{/if}
+					 class="hero-image">
+				<div class="hero-overlay">
+					<div class="hero-content">
+						<h1 class="hero-title">{$currentJournal->getLocalizedName()|escape}</h1>
+						{if $currentJournal->getLocalizedData('description')}
+							<p class="hero-description">{$currentJournal->getLocalizedData('description')|strip_tags|truncate:200}</p>
+						{/if}
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</section>
+	{/if}
 
 	{call_hook name="Templates::Index::journal"}
 
 	{if $highlights->count()}
-		{include file="frontend/components/highlights.tpl" highlights=$highlights}
-	{/if}
-
-	{if $activeTheme && !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}
-		<div class="homepage_image">
-			<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}"{if $homepageImage.altText} alt="{$homepageImage.altText|escape}"{/if}>
-		</div>
+		<section class="highlights-section">
+			<div class="container">
+				<h2 class="section-title">{translate key="plugins.generic.highlight.title"}</h2>
+				{include file="frontend/components/highlights.tpl" highlights=$highlights}
+			</div>
+		</section>
 	{/if}
 
 	{* Journal Description *}
 	{if $activeTheme && $activeTheme->getOption('showDescriptionInJournalIndex')}
 		<section class="homepage_about">
-			<a id="homepageAbout"></a>
-			<h2>{translate key="about.aboutContext"}</h2>
-			{$currentContext->getLocalizedData('description')}
+			<div class="container">
+				<a id="homepageAbout"></a>
+				<div class="about-content">
+					<h2 class="section-title">{translate key="about.aboutContext"}</h2>
+					<div class="about-description">
+						{$currentContext->getLocalizedData('description')}
+					</div>
+				</div>
+			</div>
 		</section>
 	{/if}
 
-	{include file="frontend/objects/announcements_list.tpl" numAnnouncements=$numAnnouncementsHomepage}
+	{* Announcements Section *}
+	<div class="announcements-wrapper">
+		<div class="container">
+			{include file="frontend/objects/announcements_list.tpl" numAnnouncements=$numAnnouncementsHomepage}
+		</div>
+	</div>
 
 	{* Latest issue *}
 	{if $issue}
 		<section class="current_issue">
-			<a id="homepageIssue"></a>
-			<h2>
-				{translate key="journal.currentIssue"}
-			</h2>
-			<div class="current_issue_title">
-				{$issue->getIssueIdentification()|escape}
+			<div class="container">
+				<a id="homepageIssue"></a>
+				<div class="current-issue-header">
+					<h2 class="section-title">
+						<span class="issue-badge">New</span>
+						{translate key="journal.currentIssue"}
+					</h2>
+					<div class="current_issue_title">
+						{$issue->getIssueIdentification()|escape}
+					</div>
+				</div>
+				<div class="issue-content">
+					{include file="frontend/objects/issue_toc.tpl" heading="h3"}
+				</div>
+				<div class="text-center">
+					<a href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="issue" op="archive"}" class="btn btn-primary read_more">
+						{translate key="journal.viewAllIssues"}
+						<span class="arrow">→</span>
+					</a>
+				</div>
 			</div>
-			{include file="frontend/objects/issue_toc.tpl" heading="h3"}
-			<a href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="issue" op="archive"}" class="read_more">
-				{translate key="journal.viewAllIssues"}
-			</a>
 		</section>
 	{/if}
 
 	{* Additional Homepage Content *}
 	{if $additionalHomeContent}
-		<div class="additional_content">
-			{$additionalHomeContent}
-		</div>
+		<section class="additional_content">
+			<div class="container">
+				<div class="additional-content-wrapper">
+					{$additionalHomeContent}
+				</div>
+			</div>
+		</section>
 	{/if}
 </div><!-- .page -->
 

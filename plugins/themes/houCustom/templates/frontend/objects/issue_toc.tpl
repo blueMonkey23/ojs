@@ -28,7 +28,7 @@
 {elseif $heading == "h5"}
 	{assign var="articleHeading" value="h6"}
 {/if}
-<div class="obj_issue_toc">
+<div class="obj_issue_toc issue-toc-enhanced">
 
 	{* Indicate if this is only a preview *}
 	{if !$issue->getPublished()}
@@ -36,86 +36,101 @@
 	{/if}
 
 	{* Issue introduction area above articles *}
-	<div class="heading">
+	<div class="heading issue-heading-card">
 
-		{* Issue cover image *}
-		{assign var=issueCover value=$issue->getLocalizedCoverImageUrl()}
-		{if $issueCover}
-			<div class="cover">
-				{capture assign="defaultAltText"}
-					{translate key="issue.viewIssueIdentification" identification=$issue->getIssueIdentification()|escape}
-				{/capture}
-				<img src="{$issueCover|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:$defaultAltText}">
-			</div>
-		{/if}
-
-		{* Description *}
-		{if $issue->hasDescription()}
-			<div class="description">
-				{$issue->getLocalizedDescription()|strip_unsafe_html}
-			</div>
-		{/if}
-
-		{* PUb IDs (eg - URN) *}
-		{foreach from=$pubIdPlugins item=pubIdPlugin}
-			{assign var=pubId value=$issue->getStoredPubId($pubIdPlugin->getPubIdType())}
-			{if $pubId}
-				{assign var="resolvingUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-				<div class="pub_id {$pubIdPlugin->getPubIdType()|escape}">
-					<span class="type">
-						{$pubIdPlugin->getPubIdDisplayType()|escape}:
-					</span>
-					<span class="id">
-						{if $resolvingUrl}
-							<a href="{$resolvingUrl|escape}">
-								{$resolvingUrl}
-							</a>
-						{else}
-							{$pubId}
-						{/if}
-					</span>
+		<div class="issue-header-wrapper">
+			{* Issue cover image *}
+			{assign var=issueCover value=$issue->getLocalizedCoverImageUrl()}
+			{if $issueCover}
+				<div class="cover issue-cover-image">
+					{capture assign="defaultAltText"}
+						{translate key="issue.viewIssueIdentification" identification=$issue->getIssueIdentification()|escape}
+					{/capture}
+					<img src="{$issueCover|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:$defaultAltText}">
 				</div>
 			{/if}
-		{/foreach}
 
-		{* DOI *}
-		{assign var=doiObject value=$issue->getData('doiObject')}
-		{if $doiObject}
-			{assign var="doiUrl" value=$doiObject->getData('resolvingUrl')|escape}
-			<div class="pub_id doi">
-				<span class="type">
-					DOI:
-				</span>
-				<span class="id">
-					<a href="{$doiUrl|escape}">
-						{$doiUrl}
-					</a>
-				</span>
-			</div>
-		{/if}
+			<div class="issue-meta-info">
+				{* Description *}
+				{if $issue->hasDescription()}
+					<div class="description issue-description">
+						{$issue->getLocalizedDescription()|strip_unsafe_html}
+					</div>
+				{/if}
 
-		{* Published date *}
-		{if $includeIssuePublishDate && $issue->getDatePublished()}
-			<div class="published">
-				<span class="label">
-					{translate key="submissions.published"}:
-				</span>
-				<span class="value">
-					{$issue->getDatePublished()|date_format:$dateFormatShort}
-				</span>
+				{* PUb IDs (eg - URN) *}
+				<div class="pub-ids-wrapper">
+					{foreach from=$pubIdPlugins item=pubIdPlugin}
+						{assign var=pubId value=$issue->getStoredPubId($pubIdPlugin->getPubIdType())}
+						{if $pubId}
+							{assign var="resolvingUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+							<div class="pub_id pub-id-item {$pubIdPlugin->getPubIdType()|escape}">
+								<span class="type">
+									{$pubIdPlugin->getPubIdDisplayType()|escape}:
+								</span>
+								<span class="id">
+									{if $resolvingUrl}
+										<a href="{$resolvingUrl|escape}">
+											{$resolvingUrl}
+										</a>
+									{else}
+										{$pubId}
+									{/if}
+								</span>
+							</div>
+						{/if}
+					{/foreach}
+
+					{* DOI *}
+					{assign var=doiObject value=$issue->getData('doiObject')}
+					{if $doiObject}
+						{assign var="doiUrl" value=$doiObject->getData('resolvingUrl')|escape}
+						<div class="pub_id doi pub-id-item">
+							<span class="type">
+								DOI:
+							</span>
+							<span class="id">
+								<a href="{$doiUrl|escape}">
+									{$doiUrl}
+								</a>
+							</span>
+						</div>
+					{/if}
+				</div>
+
+				{* Published date *}
+				{if $includeIssuePublishDate && $issue->getDatePublished()}
+					<div class="published published-date-info">
+						<svg class="date-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+							<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+							<line x1="16" y1="2" x2="16" y2="6"></line>
+							<line x1="8" y1="2" x2="8" y2="6"></line>
+							<line x1="3" y1="10" x2="21" y2="10"></line>
+						</svg>
+						<span class="label">
+							{translate key="submissions.published"}:
+						</span>
+						<span class="value">
+							{$issue->getDatePublished()|date_format:$dateFormatShort}
+						</span>
+					</div>				{/if}				{/if}
 			</div>
-		{/if}
+		</div>
 	</div>
 
 	{* Full-issue galleys *}
 	{if $issueGalleys}
-		<div class="galleys">
-			<{$heading} id="issueTocGalleyLabel">
+		<div class="galleys issue-galleys-section">
+			<{$heading} id="issueTocGalleyLabel" class="galleys-title">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+					<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+					<polyline points="14 2 14 8 20 8"></polyline>
+				</svg>
 				{translate key="issue.fullIssue"}
 			</{$heading}>
-			<ul class="galleys_links">
+			<ul class="galleys_links galley-links-list">
 				{foreach from=$issueGalleys item=galley}
-					<li>
+					<li class="galley-link-item">
 						{include file="frontend/objects/galley_link.tpl" parent=$issue labelledBy="issueTocGalleyLabel" purchaseFee=$currentJournal->getData('purchaseIssueFee') purchaseCurrency=$currentJournal->getData('currency')}
 					</li>
 				{/foreach}
@@ -124,18 +139,19 @@
 	{/if}
 
 	{* Articles *}
-	<div class="sections">
+	<div class="sections articles-sections">
 	{foreach name=sections from=$publishedSubmissions item=section}
-		<div class="section">
+		<div class="section article-section-card">
 		{if $section.articles}
 			{if $section.title}
-				<{$heading}>
+				<{$heading} class="section-header">
+					<span class="section-badge">Section</span>
 					{$section.title|escape}
 				</{$heading}>
 			{/if}
-			<ul class="cmp_article_list articles">
+			<ul class="cmp_article_list articles article-grid">
 				{foreach from=$section.articles item=article}
-					<li>
+					<li class="article-item">
 						{include file="frontend/objects/article_summary.tpl" heading=$articleHeading}
 					</li>
 				{/foreach}

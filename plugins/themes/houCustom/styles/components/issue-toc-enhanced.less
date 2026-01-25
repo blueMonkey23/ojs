@@ -1,0 +1,268 @@
+/**
+ * Enhanced Issue Table of Contents Styles
+ */
+
+.issue-toc-enhanced {
+    .issue-heading-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        margin-bottom: 2rem;
+
+        .issue-header-wrapper {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            align-items: start;
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+            }
+
+            .issue-cover-image {
+                img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+                }
+            }
+
+            .issue-meta-info {
+                .issue-description {
+                    font-size: 1.05rem;
+                    line-height: 1.7;
+                    color: #555;
+                    margin-bottom: 1.5rem;
+                }
+
+                .pub-ids-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.75rem;
+
+                    .pub-id-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        font-size: 0.95rem;
+
+                        .type {
+                            font-weight: 600;
+                            color: @primary;
+                        }
+
+                        .id a {
+                            color: #666;
+                            text-decoration: none;
+                            transition: color 0.2s ease;
+
+                            &:hover {
+                                color: @primary;
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+
+                .published-date-info {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    margin-top: 1rem;
+                    padding: 0.75rem;
+                    background: #f8f9fa;
+                    border-radius: 6px;
+
+                    .date-icon {
+                        stroke-width: 2;
+                        color: @primary;
+                    }
+
+                    .label {
+                        font-weight: 600;
+                        color: #555;
+                    }
+
+                    .value {
+                        color: #666;
+                    }
+                }
+            }
+        }
+    }
+
+    .issue-galleys-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+
+        .galleys-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            color: @primary;
+            margin-bottom: 1rem;
+
+            svg {
+                stroke-width: 2;
+            }
+        }
+
+        .galley-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+
+            .galley-link-item {
+                a {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0.75rem 1.5rem;
+                    background: white;
+                    border: 2px solid @primary;
+                    border-radius: 8px;
+                    color: @primary;
+                    text-decoration: none;
+                    font-weight: 600;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background: @primary;
+                        color: white;
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 12px rgba(30, 98, 146, 0.3);
+                    }
+                }
+            }
+        }
+    }
+
+    .articles-sections {
+        .article-section-card {
+            margin-bottom: 3rem;
+
+            .section-header {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+                color: @primary;
+                font-size: 1.75rem;
+
+                .section-badge {
+                    display: inline-block;
+                    background: linear-gradient(135deg, @primary 0%, darken(@primary, 10%) 100%);
+                    color: white;
+                    padding: 0.25rem 0.75rem;
+                    border-radius: 20px;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+            }
+
+            .article-grid {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1.5rem;
+
+                @media (max-width: 768px) {
+                    grid-template-columns: 1fr;
+                }
+
+                .article-item {
+                    background: white;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+                    transition: all 0.3s ease;
+                    overflow: hidden;
+
+                    &:hover {
+                        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+                        transform: translateY(-4px);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Article Summary Card Enhancement */
+.article-item {
+    .obj_article_summary {
+        padding: 1.5rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+
+            a {
+                color: @primary;
+                text-decoration: none;
+                transition: color 0.2s ease;
+
+                &:hover {
+                    color: darken(@primary, 15%);
+                }
+            }
+        }
+
+        .meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.75rem;
+
+            .authors {
+                font-weight: 500;
+            }
+        }
+
+        .abstract {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+
+        .galleys {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+
+            a {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                background: @primary;
+                color: white;
+                text-decoration: none;
+                border-radius: 6px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background: darken(@primary, 10%);
+                    transform: translateX(2px);
+                }
+            }
+        }
+    }
+}

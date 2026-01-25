@@ -216,6 +216,7 @@ class HouCustomThemePlugin extends \PKP\plugins\ThemePlugin
 
         // Load custom JavaScript for this theme
         $this->addScript('default', 'js/main.js');
+        $this->addScript('header-enhanced', 'js/header-enhanced.js');
 
         // Add navigation menu areas for this theme
         $this->addMenuArea(['primary', 'user']);

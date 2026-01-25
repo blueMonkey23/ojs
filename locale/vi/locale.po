@@ -1670,7 +1670,7 @@ msgid "about.onlineSubmissions.submissionActions"
 msgstr "{$newSubmission} hoặc {$viewSubmissions}."
 
 msgid "about.onlineSubmissions.submitToSection"
-msgstr "Tạo 1 bài gửi mới tới chuyên mục <a href=\"{$url}\">{$name}</a>."
+msgstr "Gửi bài tới chuyên mục: {$name}"
 
 msgid "about.onlineSubmissions.newSubmission"
 msgstr "Nộp bài mới"
